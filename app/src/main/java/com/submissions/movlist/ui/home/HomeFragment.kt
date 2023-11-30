@@ -1,10 +1,14 @@
 package com.submissions.movlist.ui.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.submissions.core.data.Resource
@@ -15,6 +19,7 @@ import com.submissions.movlist.ui.detail.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
+    private lateinit var broadcastReceiver: BroadcastReceiver
     private val homeViewModel: HomeViewModel by viewModel()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -64,6 +69,37 @@ class HomeFragment : Fragment() {
                 adapter = movieAdapter
             }
         }
+    }
+
+    private fun registerBroadCastReceiver() {
+        broadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                when (intent.action) {
+                    Intent.ACTION_POWER_CONNECTED -> {
+                        Toast.makeText(context,R.string.connected, Toast.LENGTH_SHORT).show()
+                    }
+                    Intent.ACTION_POWER_DISCONNECTED -> {
+                        Toast.makeText(context,R.string.disconnected, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        val intentFilter = IntentFilter()
+        intentFilter.apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }
+        requireActivity().registerReceiver(broadcastReceiver, intentFilter)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        registerBroadCastReceiver()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        requireActivity().unregisterReceiver(broadcastReceiver)
     }
 
     override fun onDestroyView() {
