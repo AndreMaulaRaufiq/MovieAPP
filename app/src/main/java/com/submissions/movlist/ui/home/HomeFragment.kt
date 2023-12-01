@@ -76,10 +76,11 @@ class HomeFragment : Fragment() {
             override fun onReceive(context: Context, intent: Intent) {
                 when (intent.action) {
                     Intent.ACTION_POWER_CONNECTED -> {
-                        Toast.makeText(context,R.string.connected, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.connected, Toast.LENGTH_SHORT).show()
                     }
+
                     Intent.ACTION_POWER_DISCONNECTED -> {
-                        Toast.makeText(context,R.string.disconnected, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.disconnected, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

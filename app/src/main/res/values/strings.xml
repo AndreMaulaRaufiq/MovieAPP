@@ -1,17 +1,13 @@
 <resources>
     <string name="app_name">MovList</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image_desc">Image</string>
     <string name="no_data">You Haven\'t Add Anything Yet</string>
     <string name="favorite">Favorite</string>
-    <string name="home">Home</string>
     <string name="something_went_wrong">Something Went Wrong\nPlease Check Your Internet Connection</string>
     <string name="overview">Overview</string>
     <string name="title">Title</string>
     <string name="release_date">Release Date</string>
-    <string name="rating">Rating</string>
     <string name="title_favorite">Favorite</string>
-    <string name="movlist">MovList</string>
     <string name="connected">Connected</string>
     <string name="disconnected">Disconnected</string>
 </resources>

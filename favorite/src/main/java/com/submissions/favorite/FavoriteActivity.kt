@@ -40,7 +40,8 @@ class FavoriteActivity : AppCompatActivity() {
             }
             favoriteViewModel.favoriteMovie.observe(this) { listMovies ->
                 movieAdapter.setData(listMovies)
-                binding.viewEmpty.visibility = if (listMovies.isNotEmpty()) View.GONE else View.VISIBLE
+                binding.viewEmpty.visibility =
+                    if (listMovies.isNotEmpty()) View.GONE else View.VISIBLE
             }
             with(binding.rvTourism) {
                 val lm = GridLayoutManager(this@FavoriteActivity, 2)

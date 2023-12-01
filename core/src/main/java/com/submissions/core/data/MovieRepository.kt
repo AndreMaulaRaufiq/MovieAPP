@@ -17,8 +17,8 @@ class MovieRepository(
     private val appExecutors: AppExecutors,
 ) : IMovieRepository {
 
-    override fun getAllMovie(): Flow<com.submissions.core.data.Resource<List<Movie>>> =
-        object : com.submissions.core.data.NetworkBoundResource<List<Movie>, List<ItemResult>>() {
+    override fun getAllMovie(): Flow<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<ItemResult>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
                 return localDataSource.getAllMovie().map {
                     DataMapper.mapEntitiesToDomain(it)
